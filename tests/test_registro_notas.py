@@ -47,3 +47,22 @@ def test_estudiante_aprueba_con_nota_alta():
     estudiante = Estudiante("Laura")
     estudiante.registrar_nota("Inglés", 4.5, "2025-1")
     assert estudiante.aprobo("Inglés", "2025-1") is True
+    
+    
+# --- REQ-3: Cálculo de promedio ---
+
+def test_promedio_con_varias_notas():
+    estudiante = Estudiante("Laura")
+    estudiante.registrar_nota("Matemáticas", 3.0, "2025-1")
+    estudiante.registrar_nota("Física", 4.0, "2025-1")
+    estudiante.registrar_nota("Química", 5.0, "2025-1")
+    assert estudiante.calcular_promedio() == 4.0
+
+def test_promedio_con_una_sola_nota():
+    estudiante = Estudiante("Laura")
+    estudiante.registrar_nota("Cálculo", 3.5, "2025-1")
+    assert estudiante.calcular_promedio() == 3.5
+
+def test_promedio_sin_notas_registradas():
+    estudiante = Estudiante("Laura")
+    assert estudiante.calcular_promedio() == 0.0
