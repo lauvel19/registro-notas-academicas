@@ -13,3 +13,8 @@ dev = [
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "--cov=src --cov-report=term-missing"
+markers = [
+    "smoke: pruebas críticas de humo",
+    "critical: pruebas de funcionalidad crítica",
+    "regression: pruebas de regresión",
+]
