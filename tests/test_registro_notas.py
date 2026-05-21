@@ -66,3 +66,24 @@ def test_promedio_con_una_sola_nota():
 def test_promedio_sin_notas_registradas():
     estudiante = Estudiante("Laura")
     assert estudiante.calcular_promedio() == 0.0
+    
+
+# --- REQ-4: No duplicar nota en misma materia y semestre ---
+
+def test_rechazar_nota_duplicada_misma_materia_mismo_semestre():
+    estudiante = Estudiante("Laura")
+    estudiante.registrar_nota("Cálculo", 3.5, "2025-1")
+    with pytest.raises(ValueError):
+        estudiante.registrar_nota("Cálculo", 4.0, "2025-1")
+
+def test_permitir_misma_materia_en_semestre_diferente():
+    estudiante = Estudiante("Laura")
+    estudiante.registrar_nota("Cálculo", 3.5, "2025-1")
+    estudiante.registrar_nota("Cálculo", 4.0, "2025-2")
+    assert estudiante.notas["2025-2"]["Cálculo"] == 4.0
+
+def test_permitir_materias_distintas_mismo_semestre():
+    estudiante = Estudiante("Laura")
+    estudiante.registrar_nota("Cálculo", 3.5, "2025-1")
+    estudiante.registrar_nota("Física", 4.0, "2025-1")
+    assert estudiante.notas["2025-1"]["Física"] == 4.0
