@@ -20,3 +20,13 @@ class Estudiante:
                 f"No existe nota para '{materia}' en el semestre '{semestre}'."
             )
         return self.notas[semestre][materia] >= 3.0
+    
+    def calcular_promedio(self):
+        todas = [
+            nota
+            for semestre in self.notas.values()
+            for nota in semestre.values()
+        ]
+        if not todas:
+            return 0.0
+        return sum(todas) / len(todas)
