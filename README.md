@@ -51,7 +51,22 @@ Sistema para registrar y gestionar notas académicas de estudiantes universitari
 
 ## Parte 2 — Casos de prueba
 
-*(se completará en el siguiente commit)*
+| ID | Requerimiento | Descripción | Precondición | Datos de entrada | Pasos | Resultado esperado | Tipo |
+|---|---|---|---|---|---|---|---|
+| TC-01 | REQ-1 | Registrar nota válida en rango medio | Estudiante sin notas | materia="Matemáticas", nota=3.5, semestre="2025-1" | 1. Crear estudiante 2. Registrar nota | Nota registrada exitosamente | Positivo |
+| TC-02 | REQ-1 | Registrar nota en valor mínimo del rango | Estudiante sin notas | materia="Física", nota=0.0, semestre="2025-1" | 1. Crear estudiante 2. Registrar nota | Nota registrada exitosamente | Borde |
+| TC-03 | REQ-1 | Registrar nota en valor máximo del rango | Estudiante sin notas | materia="Química", nota=5.0, semestre="2025-1" | 1. Crear estudiante 2. Registrar nota | Nota registrada exitosamente | Borde |
+| TC-04 | REQ-1 | Rechazar nota por debajo del mínimo | Estudiante sin notas | materia="Historia", nota=-0.1, semestre="2025-1" | 1. Crear estudiante 2. Intentar registrar nota | Se lanza ValueError con mensaje claro | Negativo |
+| TC-05 | REQ-1 | Rechazar nota por encima del máximo | Estudiante sin notas | materia="Arte", nota=5.1, semestre="2025-1" | 1. Crear estudiante 2. Intentar registrar nota | Se lanza ValueError con mensaje claro | Negativo |
+| TC-06 | REQ-2 | Estudiante aprueba con nota exactamente en el límite | Estudiante sin notas | materia="Biología", nota=3.0, semestre="2025-1" | 1. Registrar nota 2. Consultar estado | Retorna "aprueba" | Borde |
+| TC-07 | REQ-2 | Estudiante reprueba con nota justo bajo el límite | Estudiante sin notas | materia="Biología", nota=2.9, semestre="2025-1" | 1. Registrar nota 2. Consultar estado | Retorna "reprueba" | Borde |
+| TC-08 | REQ-2 | Estudiante aprueba con nota alta | Estudiante sin notas | materia="Inglés", nota=4.5, semestre="2025-1" | 1. Registrar nota 2. Consultar estado | Retorna "aprueba" | Positivo |
+| TC-09 | REQ-3 | Calcular promedio con varias notas | Estudiante sin notas | notas=[3.0, 4.0, 5.0] en materias distintas | 1. Registrar 3 notas 2. Calcular promedio | Retorna 4.0 | Positivo |
+| TC-10 | REQ-3 | Calcular promedio con una sola nota | Estudiante sin notas | materia="Cálculo", nota=3.5 | 1. Registrar 1 nota 2. Calcular promedio | Retorna 3.5 | Positivo |
+| TC-11 | REQ-3 | Calcular promedio sin notas registradas | Estudiante recién creado, sin notas | ninguno | 1. Crear estudiante 2. Calcular promedio | Retorna 0.0 | Negativo |
+| TC-12 | REQ-4 | Rechazar nota duplicada en la misma materia y semestre | Estudiante con nota ya registrada en "Cálculo" semestre "2025-1" | materia="Cálculo", nota=4.0, semestre="2025-1" | 1. Registrar primera nota 2. Intentar registrar segunda nota | Se lanza ValueError indicando duplicado | Negativo |
+| TC-13 | REQ-4 | Permitir misma materia en semestre diferente | Estudiante con nota en "Cálculo" semestre "2025-1" | materia="Cálculo", nota=4.0, semestre="2025-2" | 1. Registrar nota en 2025-1 2. Registrar nota en 2025-2 | Segunda nota registrada exitosamente | Positivo |
+| TC-14 | REQ-4 | Permitir materias distintas en el mismo semestre | Estudiante sin notas | materia1="Cálculo", materia2="Física", semestre="2025-1" | 1. Registrar nota en Cálculo 2. Registrar nota en Física | Ambas notas registradas correctamente | Positivo |
 
 ---
 
