@@ -4,18 +4,10 @@ class Estudiante:
         self.notas = {}
 
     def registrar_nota(self, materia, nota, semestre):
-        if not isinstance(nota, (int, float)):
-            raise ValueError(f"La nota '{nota}' no es un número válido.")
-        if nota < 0.0 or nota > 5.0:
-            raise ValueError(
-                f"La nota {nota} está fuera del rango permitido (0.0 – 5.0)."
-            )
+        self._validar_nota(nota)
+        self._validar_duplicado(materia, semestre)
         if semestre not in self.notas:
             self.notas[semestre] = {}
-        if materia in self.notas[semestre]:
-            raise ValueError(
-                f"Ya existe una nota para '{materia}' en el semestre '{semestre}'."
-            )
         self.notas[semestre][materia] = nota
 
     def aprobo(self, materia, semestre):
@@ -34,3 +26,17 @@ class Estudiante:
         if not todas:
             return 0.0
         return round(sum(todas) / len(todas), 2)
+
+    def _validar_nota(self, nota):
+        if not isinstance(nota, (int, float)):
+            raise ValueError(f"La nota '{nota}' no es un número válido.")
+        if nota < 0.0 or nota > 5.0:
+            raise ValueError(
+                f"La nota {nota} está fuera del rango permitido (0.0 – 5.0)."
+            )
+
+    def _validar_duplicado(self, materia, semestre):
+        if semestre in self.notas and materia in self.notas[semestre]:
+            raise ValueError(
+                f"Ya existe una nota para '{materia}' en el semestre '{semestre}'."
+            )
