@@ -12,6 +12,10 @@ class Estudiante:
             )
         if semestre not in self.notas:
             self.notas[semestre] = {}
+        if materia in self.notas[semestre]:
+            raise ValueError(
+                f"Ya existe una nota para '{materia}' en el semestre '{semestre}'."
+            )
         self.notas[semestre][materia] = nota
 
     def aprobo(self, materia, semestre):
@@ -20,7 +24,7 @@ class Estudiante:
                 f"No existe nota para '{materia}' en el semestre '{semestre}'."
             )
         return self.notas[semestre][materia] >= 3.0
-    
+
     def calcular_promedio(self):
         todas = [
             nota
