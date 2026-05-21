@@ -29,4 +29,4 @@ class Estudiante:
         ]
         if not todas:
             return 0.0
-        return sum(todas) / len(todas)
+        return round(sum(todas) / len(todas), 2)
