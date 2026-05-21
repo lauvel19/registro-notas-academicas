@@ -28,3 +28,22 @@ def test_rechazar_nota_sobre_maximo():
     estudiante = Estudiante("Laura")
     with pytest.raises(ValueError):
         estudiante.registrar_nota("Arte", 5.1, "2025-1")
+        
+        
+
+# --- REQ-2: Aprobar o reprobar ---
+
+def test_estudiante_aprueba_con_nota_exacta_limite():
+    estudiante = Estudiante("Laura")
+    estudiante.registrar_nota("Biología", 3.0, "2025-1")
+    assert estudiante.aprobo("Biología", "2025-1") is True
+
+def test_estudiante_reprueba_con_nota_bajo_limite():
+    estudiante = Estudiante("Laura")
+    estudiante.registrar_nota("Biología", 2.9, "2025-1")
+    assert estudiante.aprobo("Biología", "2025-1") is False
+
+def test_estudiante_aprueba_con_nota_alta():
+    estudiante = Estudiante("Laura")
+    estudiante.registrar_nota("Inglés", 4.5, "2025-1")
+    assert estudiante.aprobo("Inglés", "2025-1") is True
