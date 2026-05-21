@@ -72,8 +72,18 @@ Sistema para registrar y gestionar notas académicas de estudiantes universitari
 
 ## Parte 3 — Cobertura de tests
 
-*(se completará al finalizar el ciclo TDD)*
+Output final del reporte de cobertura:
 
+```
+Name                    Stmts   Miss  Cover   Missing
+-----------------------------------------------------
+src\__init__.py             0      0   100%
+src\registro_notas.py      27      2    93%   15, 32
+-----------------------------------------------------
+TOTAL                      27      2    93%
+```
+
+14 tests pasando. Cobertura total: **93%** (supera el mínimo requerido del 85%).
 ---
 
 ## Reflexión final
