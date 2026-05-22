@@ -88,4 +88,6 @@ TOTAL                      27      2    93%
 
 ## Reflexión final
 
-*(se completará al terminar la actividad)*
+Diseñar los casos de prueba en la tabla antes de escribir código obligó a pensar en el sistema desde afuera hacia adentro: primero qué debe hacer, luego cómo hacerlo. Eso reveló situaciones que probablemente se habrían ignorado al programar directamente, como el caso del estudiante sin notas o la misma materia en semestres diferentes. Arrancar a codear sin ese análisis hubiera producido una implementación que pasa los casos "obvios" pero falla en los bordes.
+
+Lo más difícil del ciclo TDD fue respetar la fase RED sin escribir nada de implementación antes del commit. La tentación aparece exactamente ahí: cuando escribes el test y ya sabes cómo resolverlo, el impulso natural es implementarlo de una vez. Saltarse el commit RED haría que el historial no evidenciara el proceso, que es precisamente lo que el ciclo busca demostrar — que el test existió antes que el código.
